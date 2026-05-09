@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Best Breakfast in Downtown Charleston | Morning Eats Guide</title>
+  <meta name="description" content="Where to eat breakfast in downtown Charleston, SC — from breakfast bowls and burritos on King Street to fresh pastries in the French Quarter." />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <style>
+    :root {
+      --cream: #f9f4ee;
+      --espresso: #2c1a0e;
+      --roast: #5c3317;
+      --gold: #c9963a;
+      --light-roast: #e8d9c5;
+      --sage: #7a8c6e;
+      --warm-white: #fffdf9;
+    }
+    body { font-family: 'Lato', sans-serif; background-color: var(--cream); color: var(--espresso); font-weight: 300; }
+
+    /* NAV */
+    .topnav { background-color: var(--espresso); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 0.6rem 0; }
+    .topnav .nav-link { color: rgba(255,255,255,0.65) !important; font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.3rem 0.9rem !important; transition: color 0.2s; }
+    .topnav .nav-link:hover { color: var(--gold) !important; }
+    .topnav .brand { font-family: 'Playfair Display', serif; color: #fff; font-size: 1.05rem; text-decoration: none; }
+
+    /* PAGE HEADER */
+    .page-header {
+      background-color: var(--espresso);
+      background-image: radial-gradient(ellipse at 80% 30%, rgba(201,150,58,0.13) 0%, transparent 55%),
+                        radial-gradient(ellipse at 15% 75%, rgba(92,51,23,0.55) 0%, transparent 55%);
+      padding: 75px 0 65px;
+      text-align: center;
+    }
+    .page-header .eyebrow { font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+    .page-header h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.2rem); color: #fff; margin-bottom: 0.8rem; line-height: 1.2; }
+    .page-header .sub { color: rgba(255,255,255,0.6); font-size: 0.95rem; max-width: 520px; margin: 0 auto; line-height: 1.7; }
+
+    /* SECTION LABELS */
+    .section-eyebrow { font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3vw, 2.1rem); color: var(--espresso); margin-bottom: 0.5rem; }
+
+    /* INTRO */
+    .intro { padding: 55px 0 30px; }
+    .intro .prose { font-size: 1rem; line-height: 1.85; color: #4e3b2b; max-width: 680px; }
+    .pull-quote {
+      border-left: 3px solid var(--gold);
+      padding: 0.75rem 0 0.75rem 1.3rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.12rem;
+      color: var(--roast);
+      font-style: italic;
+      margin: 1.4rem 0 1.5rem;
+    }
+
+    /* SWEET PALM FEATURED BLOCK */
+    .sp-featured {
+      background: var(--espresso);
+      border-radius: 16px;
+      padding: 2rem 2.2rem 1.8rem;
+      color: #fff;
+      position: relative;
+      margin-bottom: 3rem;
+    }
+    .sp-featured::before {
+      content: 'OUR TOP PICK FOR BREAKFAST';
+      position: absolute;
+      top: -13px; left: 24px;
+      background: var(--gold);
+      color: var(--espresso);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      padding: 0.22rem 0.75rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+    .sp-featured .sp-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      color: #fff;
+      margin-bottom: 0.15rem;
+    }
+    .sp-featured .sp-addr {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 1rem;
+    }
+    .sp-featured .sp-addr i { color: var(--gold); margin-right: 0.25rem; }
+    .sp-featured .sp-intro {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.78;
+      margin-bottom: 1.4rem;
+      max-width: 680px;
+    }
+
+    /* MENU ITEMS */
+    .menu-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.9rem;
+    }
+    .menu-bullets { list-style: none; padding: 0; margin: 0 0 1.4rem; }
+    .menu-bullets li {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.65;
+    }
+    .menu-bullets li:last-child { border-bottom: none; }
+    .menu-bullets li .dot {
+      width: 6px; height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 0.55rem;
+    }
+    .menu-bullets li strong { color: #fff; font-weight: 700; display: block; margin-bottom: 0.1rem; }
+
+    .sp-tags .tag {
+      display: inline-block;
+      background: rgba(201,150,58,0.15);
+      color: var(--gold);
+      border: 1px solid rgba(201,150,58,0.3);
+      font-size: 0.71rem;
+      border-radius: 50px;
+      padding: 0.2rem 0.65rem;
+      margin-right: 0.3rem;
+      margin-bottom: 0.3rem;
+    }
+    .sp-visit-btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.55rem 1.5rem;
+      border-radius: 50px;
+      background: var(--gold);
+      color: var(--espresso);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .sp-visit-btn:hover { opacity: 0.82; }
+    .sp-hours {
+      margin-top: 1.2rem;
+      padding-top: 1.1rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.45);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+    }
+    .sp-hours span strong { display: block; color: rgba(255,255,255,0.8); font-size: 0.88rem; }
+
+    /* OTHER SPOTS LIST */
+    .breakfast-list { padding: 0 0 70px; }
+    .b-item {
+      display: flex;
+      gap: 1.1rem;
+      align-items: flex-start;
+      padding: 1.4rem 0;
+      border-bottom: 1px solid rgba(92,51,23,0.1);
+    }
+    .b-item:last-child { border-bottom: none; }
+    .b-dot {
+      width: 10px; height: 10px;
+      background: var(--gold);
+      border-radius: 50%;
+      margin-top: 0.52rem;
+      flex-shrink: 0;
+    }
+    .b-item h5 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.12rem;
+      color: var(--espresso);
+      margin-bottom: 0.15rem;
+    }
+    .b-item .addr { font-size: 0.78rem; color: #8a7060; margin-bottom: 0.55rem; }
+    .b-item .addr i { color: var(--sage); margin-right: 0.25rem; }
+    .b-item p { font-size: 0.92rem; color: #4e3b2b; line-height: 1.75; margin-bottom: 0.6rem; }
+    .b-item .tag {
+      display: inline-block;
+      background: var(--light-roast);
+      color: var(--roast);
+      font-size: 0.71rem;
+      border-radius: 4px;
+      padding: 0.18rem 0.55rem;
+      margin-right: 0.3rem;
+      margin-bottom: 0.3rem;
+    }
+
+    /* FOOTER */
+    footer { background: var(--espresso); border-top: 1px solid rgba(255,255,255,0.06); padding: 35px 0 25px; color: rgba(255,255,255,0.45); font-size: 0.82rem; }
+    footer .footer-brand { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #fff; margin-bottom: 0.25rem; }
+    footer a { color: rgba(255,255,255,0.45); text-decoration: none; }
+    footer a:hover { color: var(--gold); }
+    footer hr { border-color: rgba(255,255,255,0.08); margin: 1.2rem 0; }
+
+    @media(max-width: 576px) {
+      .sp-featured { padding: 1.6rem 1.3rem 1.4rem; }
+      .sp-hours { gap: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="topnav">
+    <div class="container d-flex align-items-center justify-content-between flex-wrap gap-2">
+      <a href="index.html" class="brand">☕ Downtown CHS Coffee</a>
+      <ul class="nav">
+        <li><a class="nav-link" href="index.html#directory">Coffee Directory</a></li>
+        <li><a class="nav-link" href="breakfast.html">Breakfast</a></li>
+        <li><a class="nav-link" href="desserts.html">Desserts</a></li>
+        <li><a class="nav-link" href="about.html">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <p class="eyebrow">Morning Eats on the Peninsula</p>
+    <h1>Breakfast in<br /><em style="color:var(--gold);">Downtown Charleston</em></h1>
+    <p class="sub">Where locals actually eat in the morning — from King Street breakfast bowls and burritos to French Quarter pastries worth waking up early for.</p>
+  </div>
+
+  <!-- INTRO -->
+  <section class="intro">
+    <div class="container">
+      <div class="prose">
+        <p>Breakfast in Charleston moves at its own pace. On weekday mornings the city has an easy rhythm — locals grabbing a coffee and a bite before work, students cutting across King Street toward the College of Charleston. By Saturday, the whole downtown wakes up at once and the best breakfast spots fill fast.</p>
+        <div class="pull-quote">"The spots worth knowing are the ones that take the food as seriously as the coffee."</div>
+        <p>This page focuses on the lower peninsula — walkable spots that do breakfast well and won't waste your morning. We lead with our top pick, then round out the list with other solid options across the downtown neighborhoods.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SWEET PALM FEATURED -->
+  <section style="padding: 0 0 20px;">
+    <div class="container" style="max-width: 780px;">
+
+      <p class="section-eyebrow">Featured</p>
+      <h2 class="section-title mb-4">Where We'd Send You First</h2>
+
+      <div class="sp-featured">
+        <h3 class="sp-name">Sweet Palm Coffee &amp; Food</h3>
+        <div class="sp-addr"><i class="bi bi-geo-alt-fill"></i>471 King St, Charleston, SC · King Street</div>
+
+        <p class="sp-intro">Most coffee shops downtown treat food as an afterthought. Sweet Palm Coffee &amp; Food on King Street doesn't — and that's exactly what sets it apart. Opened by chef Jonathan Roth, the kitchen operates with the same level of care as the espresso bar, turning out a breakfast menu that holds up on its own. The room fills quickly on weekend mornings, the service is fast, and pretty much everything on the menu is made fresh to order. If you're eating breakfast downtown once, this is where to go.</p>
+
+        <p class="menu-label">From the Menu</p>
+        <ul class="menu-bullets">
+          <li>
+            <span class="dot"></span>
+            <span><strong>Breakfast Bowl</strong>Scrambled eggs over crispy breakfast potatoes with caramelized onions, roasted peppers, sharp Carolina cheddar, fresh arugula, and a drizzle of their house AM sauce. Hearty and built for a full morning.</span>
+          </li>
+          <li>
+            <span class="dot"></span>
+            <span><strong>Breakfast Burrito</strong>All the same flavors as the bowl — eggs, potatoes, roasted peppers, caramelized onion, cheddar, arugula, and AM sauce — wrapped in a warm tortilla and grilled crispy. A zero-net-carb wrap option is available for +$1.</span>
+          </li>
+          <li>
+            <span class="dot"></span>
+            <span><strong>Egg Bites</strong>Soft, fluffy bites made with turkey bacon, cheddar, and eggs. Warm, protein-packed, and a solid grab-and-go option if you're in a hurry.</span>
+          </li>
+          <li>
+            <span class="dot"></span>
+            <span><strong>Avocado Toast</strong>Smashed lemon avocado on multigrain toast with flaky salt, everything seasoning, feta, pickled green onion, and a hint of chili crisp. Option to add two hard-boiled eggs for +$2.</span>
+          </li>
+          <li>
+            <span class="dot"></span>
+            <span><strong>Overnight Oats</strong>Chilled oats mixed with seasonal yogurt, acacia honey, apple, raisin, shredded coconut, chia seeds, and toasted walnuts — topped with crispy granola and fresh berries. A lighter option that still fills you up.</span>
+          </li>
+          <li>
+            <span class="dot"></span>
+            <span><strong>House-Made Cinnamon Rolls</strong>Baked fresh in-house daily. Gooey, cinnamon-packed, and consistently one of the most talked-about items on the menu. They do sell out — show up early if this is your goal.</span>
+          </li>
+          <li>
+            <span class="dot"></span>
+            <span><strong>Pastry Display</strong>A rotating selection of fresh-baked pastries in the display case each morning. Worth a look when you order — the selection changes and is usually worth grabbing one alongside your drink.</span>
+          </li>
+        </ul>
+
+        <div class="sp-tags">
+          <span class="tag">King Street</span>
+          <span class="tag">Made to Order</span>
+          <span class="tag">Specialty Coffee</span>
+          <span class="tag">Order Online</span>
+          <span class="tag">Breakfast &amp; Lunch</span>
+          <span class="tag">Chef-Driven</span>
+        </div>
+
+        <div>
+          <a href="https://www.sweetpalmcoffee.com" target="_blank" rel="noopener" class="sp-visit-btn"><i class="bi bi-arrow-up-right-square me-1"></i>Visit sweetpalmcoffee.com</a>
+        </div>
+
+        <div class="sp-hours">
+          <span><strong>Mon – Thu</strong>8:00 am – 4:00 pm</span>
+          <span><strong>Fri – Sat</strong>7:00 am – 5:00 pm</span>
+          <span><strong>Sunday</strong>7:00 am – 5:00 pm</span>
+          <span><strong>Online Order</strong>Available via Toast &amp; Uber Eats</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- OTHER SPOTS -->
+  <section class="breakfast-list">
+    <div class="container" style="max-width: 780px;">
+
+      <p class="section-eyebrow">Also Worth Knowing</p>
+      <h2 class="section-title mb-1">More Downtown Breakfast Spots</h2>
+      <p style="font-size:0.9rem; color:#7a6050; margin-bottom:2rem;">Other solid options across the lower peninsula — no links, just the facts.</p>
+
+      <!-- Harken -->
+      <div class="b-item">
+        <div class="b-dot"></div>
+        <div>
+          <h5>Harken Cafe &amp; Bakery</h5>
+          <div class="addr"><i class="bi bi-geo-alt-fill"></i>62 Queen St — French Quarter</div>
+          <p>One of the best sit-down breakfast spots in the French Quarter. Harken does a beautifully curated morning menu — quiche, breakfast sandwiches, granola bowls, and house-made pastries — in a room that actually looks good at 8am. The seasonal latte paired with a breakfast burrito is a local favorite. All-day on weekends, weekday mornings only during the week.</p>
+          <span class="tag">Quiche</span>
+          <span class="tag">Breakfast Sandwiches</span>
+          <span class="tag">Fresh Pastries</span>
+          <span class="tag">Cozy Seating</span>
+        </div>
+      </div>
+
+      <!-- The Harbinger -->
+      <div class="b-item">
+        <div class="b-dot"></div>
+        <div>
+          <h5>The Harbinger</h5>
+          <div class="addr"><i class="bi bi-geo-alt-fill"></i>1107 King St — Upper King</div>
+          <p>A women-owned scratch kitchen on Upper King with a morning menu that punches well above typical café fare. Hand-rolled bagels, a sweet potato and tahini oat bar, granola bowls, and an ever-changing seasonal selection. Their cold brew is consistently praised as some of the best downtown. Cozy patio out back for good weather mornings.</p>
+          <span class="tag">Scratch Kitchen</span>
+          <span class="tag">Bagels</span>
+          <span class="tag">Cold Brew</span>
+          <span class="tag">Seasonal Menu</span>
+        </div>
+      </div>
+
+      <!-- Clerks Coffee -->
+      <div class="b-item">
+        <div class="b-dot"></div>
+        <div>
+          <h5>Clerks Coffee Company</h5>
+          <div class="addr"><i class="bi bi-geo-alt-fill"></i>181 Church St — Emeline Hotel, Near City Market</div>
+          <p>Brunch and breakfast done properly inside the boutique Emeline Hotel. Clerks serves a full morning menu alongside excellent espresso drinks in a quiet, well-designed space steps from the Charleston City Market. A reliable option for a proper sit-down without the King Street foot traffic — especially good on weekday mornings when the room is calm.</p>
+          <span class="tag">Full Brunch Menu</span>
+          <span class="tag">Boutique Hotel</span>
+          <span class="tag">Espresso</span>
+          <span class="tag">Quiet Setting</span>
+        </div>
+      </div>
+
+      <!-- Millers All Day -->
+      <div class="b-item">
+        <div class="b-dot"></div>
+        <div>
+          <h5>Millers All Day</h5>
+          <div class="addr"><i class="bi bi-geo-alt-fill"></i>King St — Downtown</div>
+          <p>A proper sit-down breakfast restaurant on King Street that covers the full Southern spread — biscuits, eggs, bacon, and pastries to go alongside solid coffee. Popular with locals and visitors alike, and a reliable anchor for a slower weekend morning when you want a real table and a real meal rather than a quick grab-and-go. A second location on James Island for the West Side.</p>
+          <span class="tag">Southern Breakfast</span>
+          <span class="tag">Biscuits</span>
+          <span class="tag">Full Table Service</span>
+          <span class="tag">King Street</span>
+        </div>
+      </div>
+
+      <!-- Babas on Cannon -->
+      <div class="b-item">
+        <div class="b-dot"></div>
+        <div>
+          <h5>Babas on Cannon</h5>
+          <div class="addr"><i class="bi bi-geo-alt-fill"></i>Cannon St — Near Upper King</div>
+          <p>A European-style café that handles mornings with house-made pastries and great coffee before transitioning into an afternoon wine bar. Their banana bread has a near-cult following locally, and the cheddar scones are worth pairing with an espresso. Three downtown locations (Cannon, Meeting, and Wentworth) make it easy to find one no matter where you're starting the day.</p>
+          <span class="tag">European Café</span>
+          <span class="tag">Banana Bread</span>
+          <span class="tag">Pastries</span>
+          <span class="tag">Multiple Locations</span>
+        </div>
+      </div>
+
+      <!-- Brown's Court Bakery -->
+      <div class="b-item">
+        <div class="b-dot"></div>
+        <div>
+          <h5>Brown's Court Bakery</h5>
+          <div class="addr"><i class="bi bi-geo-alt-fill"></i>St. Philip St — Off King</div>
+          <p>A one-block detour off King Street that most visitors never take — which is their loss. Fresh-baked pastries, breakfast sandwiches, and ham and cheese croissants made in-house daily. The space is small and unhurried, and the quality is legitimately excellent for what it is. If you're after a quiet morning without fighting for a table, Brown's Court is the move.</p>
+          <span class="tag">Croissants</span>
+          <span class="tag">Breakfast Sandwiches</span>
+          <span class="tag">Hidden Gem</span>
+          <span class="tag">Low-Key Vibe</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-brand">Downtown Charleston Coffee Shops</div>
+      <p>An independent guide to the best cafés, breakfast spots, and sweet treats on the Charleston peninsula.</p>
+      <hr />
+      <div class="d-flex flex-wrap justify-content-between gap-2" style="font-size:0.78rem;">
+        <span>© 2025 downtowncharlestoncoffeeshops.com</span>
+        <span>
+          <a href="index.html">Home</a> ·
+          <a href="breakfast.html">Breakfast</a> ·
+          <a href="desserts.html">Desserts</a> ·
+          <a href="about.html">About</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

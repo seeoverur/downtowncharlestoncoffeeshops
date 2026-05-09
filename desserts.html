@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Best Dessert Shops in Downtown Charleston | Sweet Treats Guide</title>
+  <meta name="description" content="The best dessert shops, bakeries, and sweet spots in downtown Charleston, SC — from hand-painted chocolates to fresh-baked cinnamon rolls on King Street." />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <style>
+    :root {
+      --cream: #f9f4ee;
+      --espresso: #2c1a0e;
+      --roast: #5c3317;
+      --gold: #c9963a;
+      --light-roast: #e8d9c5;
+      --sage: #7a8c6e;
+    }
+    body { font-family: 'Lato', sans-serif; background-color: var(--cream); color: var(--espresso); font-weight: 300; }
+
+    /* NAV */
+    .topnav { background-color: var(--espresso); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 0.6rem 0; }
+    .topnav .nav-link { color: rgba(255,255,255,0.65) !important; font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.3rem 0.9rem !important; transition: color 0.2s; }
+    .topnav .nav-link:hover { color: var(--gold) !important; }
+    .topnav .brand { font-family: 'Playfair Display', serif; color: #fff; font-size: 1.05rem; text-decoration: none; }
+
+    /* PAGE HEADER */
+    .page-header {
+      background-color: var(--espresso);
+      background-image: radial-gradient(ellipse at 75% 40%, rgba(201,150,58,0.12) 0%, transparent 55%),
+                        radial-gradient(ellipse at 20% 70%, rgba(92,51,23,0.5) 0%, transparent 55%);
+      padding: 75px 0 65px;
+      text-align: center;
+    }
+    .page-header .eyebrow { font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+    .page-header h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.2rem); color: #fff; margin-bottom: 0.8rem; }
+    .page-header .sub { color: rgba(255,255,255,0.6); font-size: 0.95rem; max-width: 500px; margin: 0 auto; line-height: 1.7; }
+
+    /* INTRO */
+    .intro { padding: 55px 0 40px; }
+    .intro .prose { font-size: 1rem; line-height: 1.85; color: #4e3b2b; max-width: 680px; }
+    .pull-quote {
+      border-left: 3px solid var(--gold);
+      padding: 0.75rem 0 0.75rem 1.3rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.12rem;
+      color: var(--roast);
+      font-style: italic;
+      margin: 1.4rem 0 1.5rem;
+    }
+
+    /* SECTION LABELS */
+    .section-eyebrow { font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3vw, 2.1rem); color: var(--espresso); margin-bottom: 0.5rem; }
+
+    /* DESSERT LIST */
+    .dessert-list { padding: 0 0 70px; }
+    .dessert-item {
+      display: flex;
+      gap: 1.1rem;
+      align-items: flex-start;
+      padding: 1.4rem 0;
+      border-bottom: 1px solid rgba(92,51,23,0.1);
+    }
+    .dessert-item:last-child { border-bottom: none; }
+    .bullet-dot {
+      width: 10px; height: 10px;
+      background: var(--gold);
+      border-radius: 50%;
+      margin-top: 0.55rem;
+      flex-shrink: 0;
+    }
+    .dessert-item .item-body {}
+    .dessert-item h5 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--espresso);
+      margin-bottom: 0.15rem;
+    }
+    .dessert-item .addr {
+      font-size: 0.78rem;
+      color: #8a7060;
+      margin-bottom: 0.55rem;
+    }
+    .dessert-item .addr i { color: var(--sage); margin-right: 0.25rem; }
+    .dessert-item p {
+      font-size: 0.92rem;
+      color: #4e3b2b;
+      line-height: 1.75;
+      margin-bottom: 0.65rem;
+    }
+    .dessert-item .tag {
+      display: inline-block;
+      background: var(--light-roast);
+      color: var(--roast);
+      font-size: 0.71rem;
+      border-radius: 4px;
+      padding: 0.18rem 0.55rem;
+      margin-right: 0.3rem;
+      margin-bottom: 0.3rem;
+    }
+
+    /* SWEET PALM CALLOUT — bottom featured */
+    .sweetpalm-item {
+      background: var(--espresso);
+      border-radius: 14px;
+      padding: 1.8rem 2rem;
+      color: #fff;
+      margin-top: 1rem;
+      position: relative;
+    }
+    .sweetpalm-item::before {
+      content: 'ALSO WORTH KNOWING';
+      position: absolute;
+      top: -12px; left: 24px;
+      background: var(--gold);
+      color: var(--espresso);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      padding: 0.2rem 0.65rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+    .sweetpalm-item .bullet-dot { background: var(--gold); margin-top: 0.6rem; }
+    .sweetpalm-item h5 { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: #fff; margin-bottom: 0.15rem; }
+    .sweetpalm-item .addr { color: rgba(255,255,255,0.5); font-size: 0.78rem; margin-bottom: 0.6rem; }
+    .sweetpalm-item .addr i { color: var(--gold); }
+    .sweetpalm-item p { color: rgba(255,255,255,0.75); font-size: 0.92rem; line-height: 1.75; margin-bottom: 0.7rem; }
+    .sweetpalm-item .tag {
+      background: rgba(201,150,58,0.15);
+      color: var(--gold);
+      border: 1px solid rgba(201,150,58,0.3);
+      font-size: 0.71rem;
+      border-radius: 50px;
+      padding: 0.2rem 0.65rem;
+      margin-right: 0.3rem;
+      margin-bottom: 0.3rem;
+      display: inline-block;
+    }
+    .sweetpalm-item a.visit-link {
+      display: inline-block;
+      margin-top: 0.6rem;
+      font-size: 0.8rem;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .sweetpalm-item a.visit-link:hover { opacity: 0.75; }
+
+    /* FOOTER */
+    footer { background: var(--espresso); border-top: 1px solid rgba(255,255,255,0.06); padding: 35px 0 25px; color: rgba(255,255,255,0.45); font-size: 0.82rem; }
+    footer .footer-brand { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #fff; margin-bottom: 0.25rem; }
+    footer a { color: rgba(255,255,255,0.45); text-decoration: none; }
+    footer a:hover { color: var(--gold); }
+    footer hr { border-color: rgba(255,255,255,0.08); margin: 1.2rem 0; }
+
+    @media(max-width:576px) {
+      .sweetpalm-item { padding: 1.5rem 1.3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="topnav">
+    <div class="container d-flex align-items-center justify-content-between flex-wrap gap-2">
+      <a href="index.html" class="brand">☕ Downtown CHS Coffee</a>
+      <ul class="nav">
+        <li><a class="nav-link" href="index.html#directory">Coffee Directory</a></li>
+        <li><a class="nav-link" href="desserts.html">Desserts</a></li>
+        <li><a class="nav-link" href="about.html">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <p class="eyebrow">Sweet Spots in the Holy City</p>
+    <h1>Downtown Charleston<br /><em style="color:var(--gold);">Desserts &amp; Bakeries</em></h1>
+    <p class="sub">From French pastries on King Street to house-made cinnamon rolls — the best places to satisfy a sweet tooth downtown.</p>
+  </div>
+
+  <!-- INTRO -->
+  <section class="intro">
+    <div class="container">
+      <div class="prose">
+        <p>Charleston has always had a serious sweet tooth. The city's dessert scene runs the full range — from European-trained chocolatiers tucking hand-painted truffles behind Society Street storefronts, to neighborhood bakeries cranking out sticky buns and cupcakes that draw lines down the block on weekends.</p>
+        <div class="pull-quote">"The best bakeries in Charleston feel less like storefronts and more like reasons to slow down."</div>
+        <p>What follows is our running list of downtown dessert shops worth knowing about. We keep it focused on the lower peninsula — walkable, honest, no sponsored spots.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESSERT LIST -->
+  <section class="dessert-list">
+    <div class="container" style="max-width:760px;">
+
+      <p class="section-eyebrow">The List</p>
+      <h2 class="section-title mb-4">Dessert Shops &amp; Bakeries Downtown</h2>
+
+      <!-- Christophe -->
+      <div class="dessert-item">
+        <div class="bullet-dot"></div>
+        <div class="item-body">
+          <h5>Christophe Artisan Chocolatier-Pâtissier</h5>
+          <div class="addr"><i class="bi bi-geo-alt-fill"></i>90 Society St — Between Meeting &amp; King</div>
+          <p>One of the most distinctive dessert destinations in all of Charleston. Christophe is known for hand-painted chocolate truffles that are almost too beautiful to eat — almost. The almond croissants are flaky and buttery, and the overall pastry selection carries a genuine European pedigree. If you're after something truly artisan, this is the stop.</p>
+          <span class="tag">Chocolates</span>
+          <span class="tag">Almond Croissants</span>
+          <span class="tag">French Pastries</span>
+          <span class="tag">Truffles</span>
+        </div>
+      </div>
+
+      <!-- Carmella's -->
+      <div class="dessert-item">
+        <div class="bullet-dot"></div>
+        <div class="item-body">
+          <h5>Carmella's Cafe &amp; Dessert Bar</h5>
+          <div class="addr"><i class="bi bi-geo-alt-fill"></i>198 E Bay St — Downtown</div>
+          <p>A go-to for post-dinner dessert on East Bay. Carmella's covers the full spectrum — rich cakes, cheesecakes, baklava, and a rotating selection that skews indulgent in the best way. The atmosphere is warm and vintage-feeling, making it an easy spot to linger over something sweet after a long evening of exploring the city.</p>
+          <span class="tag">Cakes</span>
+          <span class="tag">Cheesecake</span>
+          <span class="tag">Baklava</span>
+          <span class="tag">Dessert Bar</span>
+        </div>
+      </div>
+
+      <!-- La Patisserie -->
+      <div class="dessert-item">
+        <div class="bullet-dot"></div>
+        <div class="item-body">
+          <h5>La Pâtisserie</h5>
+          <div class="addr"><i class="bi bi-geo-alt-fill"></i>404 King St — Inside Hotel Bennett</div>
+          <p>Tucked inside Hotel Bennett on lower King Street, La Pâtisserie brings genuine European pastry craft to one of the city's most prominent addresses. The tarts and eclairs are little works of art, and their pistachio croissant has quietly become one of the most talked-about pastries on King Street. Worth stopping in even if you're not a hotel guest.</p>
+          <span class="tag">Eclairs</span>
+          <span class="tag">Tarts</span>
+          <span class="tag">Pistachio Croissant</span>
+          <span class="tag">Hotel Bennett</span>
+        </div>
+      </div>
+
+      <!-- Kaminsky's -->
+      <div class="dessert-item">
+        <div class="bullet-dot"></div>
+        <div class="item-body">
+          <h5>Kaminsky's Dessert Cafe</h5>
+          <div class="addr"><i class="bi bi-geo-alt-fill"></i>78 N Market St — City Market Area</div>
+          <p>A longtime Charleston institution steps from the City Market. Kaminsky's keeps a full dessert menu running alongside specialty coffees, cocktails, and milkshakes in a cozy, dimly lit space that draws both locals and visitors late into the evening. The rotating cake selection changes regularly — if something on the chalkboard catches your eye, order it.</p>
+          <span class="tag">Dessert Cafe</span>
+          <span class="tag">Specialty Coffee</span>
+          <span class="tag">Cocktails</span>
+          <span class="tag">Late Night</span>
+        </div>
+      </div>
+
+      <!-- Sugar Bakeshop -->
+      <div class="dessert-item">
+        <div class="bullet-dot"></div>
+        <div class="item-body">
+          <h5>Sugar Bakeshop</h5>
+          <div class="addr"><i class="bi bi-geo-alt-fill"></i>59½ Cannon St — Cannonborough</div>
+          <p>A small-batch neighborhood bakeshop with a devoted following for its cupcakes, macarons, and signature brownies. The chocolate, Nutella, and salted caramel fudge brownies in particular have a near-legendary reputation among locals. The vintage interior and community feel make it one of the most charming spots on this entire list.</p>
+          <span class="tag">Cupcakes</span>
+          <span class="tag">Macarons</span>
+          <span class="tag">Fudge Brownies</span>
+          <span class="tag">Small Batch</span>
+        </div>
+      </div>
+
+      <!-- Bakehouse -->
+      <div class="dessert-item">
+        <div class="bullet-dot"></div>
+        <div class="item-body">
+          <h5>Bakehouse Bakery Cafe</h5>
+          <div class="addr"><i class="bi bi-geo-alt-fill"></i>160 E Bay St — French Quarter</div>
+          <p>The French Quarter's resident bakery and coffee house, conveniently situated on East Bay between The Battery and the City Market. Bakehouse serves cakes, cookies, brownie bars, tarts, and quiche alongside their custom-roasted house blend coffee. It's the kind of spot that rewards a slow morning — grab a tart and a latte and find a table.</p>
+          <span class="tag">Tarts</span>
+          <span class="tag">Brownie Bars</span>
+          <span class="tag">House Roast Coffee</span>
+          <span class="tag">French Quarter</span>
+        </div>
+      </div>
+
+      <!-- Brown's Court -->
+      <div class="dessert-item">
+        <div class="bullet-dot"></div>
+        <div class="item-body">
+          <h5>Brown's Court Bakery</h5>
+          <div class="addr"><i class="bi bi-geo-alt-fill"></i>St. Philip St — Off King</div>
+          <p>A quietly beloved spot one block off King Street that the crowds haven't fully discovered yet. Fresh-baked pastries, bread, and breakfast items are crafted daily, and the whole operation has the feel of a neighborhood bakery that just happens to be very, very good. Worth the slight detour off the main strip.</p>
+          <span class="tag">Fresh Pastries</span>
+          <span class="tag">Artisan Bread</span>
+          <span class="tag">Hidden Gem</span>
+          <span class="tag">Off King</span>
+        </div>
+      </div>
+
+      <!-- Harken -->
+      <div class="dessert-item">
+        <div class="bullet-dot"></div>
+        <div class="item-body">
+          <h5>Harken Cafe &amp; Bakery</h5>
+          <div class="addr"><i class="bi bi-geo-alt-fill"></i>62 Queen St — French Quarter</div>
+          <p>While Harken earns its coffee shop stripes during morning hours, the bakery side deserves its own mention. Their seasonal pastries, quiche, and fresh cookies are made in-house daily. The chocolate chip cookie alone is worth stopping in for. Breakfast burritos with chorizo and avocado round out a menu that does both savory and sweet well.</p>
+          <span class="tag">Seasonal Pastries</span>
+          <span class="tag">Cookies</span>
+          <span class="tag">Quiche</span>
+          <span class="tag">Scratch Kitchen</span>
+        </div>
+      </div>
+
+      <!-- SWEET PALM — bottom featured callout -->
+      <div class="sweetpalm-item d-flex gap-3 mt-4">
+        <div class="bullet-dot" style="margin-top:0.65rem;"></div>
+        <div class="item-body">
+          <h5>Sweet Palm Coffee &amp; Food</h5>
+          <div class="addr"><i class="bi bi-geo-alt-fill"></i>471 King St — Downtown Charleston</div>
+          <p>Best known as one of King Street's top coffee spots, Sweet Palm also deserves a place on this list for one specific reason: their house-made cinnamon rolls. These aren't an afterthought — they're baked fresh in-house and have built a quiet but dedicated following among locals who know to show up early before they sell out. Pair one with a specialty latte or cold brew and you've got one of the more satisfying morning combinations downtown has to offer. The full breakfast and lunch menu makes it easy to turn a pastry run into a proper sit-down.</p>
+          <span class="tag">Cinnamon Rolls</span>
+          <span class="tag">House-Made Pastries</span>
+          <span class="tag">Specialty Coffee</span>
+          <span class="tag">King Street</span>
+          <span class="tag">Breakfast &amp; Lunch</span>
+          <br />
+          <a href="https://www.sweetpalmcoffee.com" target="_blank" rel="noopener" class="visit-link"><i class="bi bi-arrow-up-right-square me-1"></i>Visit sweetpalmcoffee.com</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-brand">Downtown Charleston Coffee Shops</div>
+      <p>An independent guide to the best cafés and sweet spots on the Charleston peninsula.</p>
+      <hr />
+      <div class="d-flex flex-wrap justify-content-between gap-2" style="font-size:0.78rem;">
+        <span>© 2025 downtowncharlestoncoffeeshops.com</span>
+        <span>
+          <a href="index.html">Home</a> ·
+          <a href="desserts.html">Desserts</a> ·
+          <a href="about.html">About</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

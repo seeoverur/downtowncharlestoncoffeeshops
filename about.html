@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | Downtown Charleston Coffee Shops</title>
+  <meta name="description" content="About Downtown Charleston Coffee Shops — an independent local guide to the best cafés on the Charleston peninsula." />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <style>
+    :root {
+      --cream: #f9f4ee;
+      --espresso: #2c1a0e;
+      --roast: #5c3317;
+      --gold: #c9963a;
+      --light-roast: #e8d9c5;
+    }
+    body { font-family: 'Lato', sans-serif; background-color: var(--cream); color: var(--espresso); font-weight: 300; }
+    .topnav { background-color: var(--espresso); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 0.6rem 0; }
+    .topnav .nav-link { color: rgba(255,255,255,0.65) !important; font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.3rem 0.9rem !important; transition: color 0.2s; }
+    .topnav .nav-link:hover { color: var(--gold) !important; }
+    .topnav .brand { font-family: 'Playfair Display', serif; color: #fff; font-size: 1.05rem; text-decoration: none; }
+
+    .page-header {
+      background-color: var(--espresso);
+      padding: 70px 0 60px;
+      text-align: center;
+    }
+    .page-header .eyebrow { font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+    .page-header h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.9rem, 4vw, 3rem); color: #fff; margin: 0; }
+
+    .about-body { padding: 70px 0 80px; }
+    .about-body .prose {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: #4e3b2b;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+    .about-body .prose p { margin-bottom: 1.2rem; }
+    .about-body .prose strong { color: var(--espresso); font-weight: 700; }
+    .pull-quote {
+      border-left: 3px solid var(--gold);
+      padding: 0.75rem 0 0.75rem 1.3rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--roast);
+      font-style: italic;
+      margin: 1.5rem 0 1.6rem;
+    }
+    .about-body .cta-link {
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0.6rem 1.6rem;
+      border-radius: 50px;
+      background: var(--espresso);
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .about-body .cta-link:hover { opacity: 0.8; }
+
+    footer { background: var(--espresso); border-top: 1px solid rgba(255,255,255,0.06); padding: 35px 0 25px; color: rgba(255,255,255,0.45); font-size: 0.82rem; }
+    footer .footer-brand { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #fff; margin-bottom: 0.25rem; }
+    footer a { color: rgba(255,255,255,0.45); text-decoration: none; }
+    footer a:hover { color: var(--gold); }
+    footer hr { border-color: rgba(255,255,255,0.08); margin: 1.2rem 0; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="topnav">
+    <div class="container d-flex align-items-center justify-content-between flex-wrap gap-2">
+      <a href="index.html" class="brand">☕ Downtown CHS Coffee</a>
+      <ul class="nav">
+        <li><a class="nav-link" href="index.html#directory">Directory</a></li>
+        <li><a class="nav-link" href="index.html#guide">Visitor Guide</a></li>
+        <li><a class="nav-link" href="about.html">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <p class="eyebrow">Who We Are</p>
+    <h1>About This Guide</h1>
+  </div>
+
+  <!-- BODY -->
+  <section class="about-body">
+    <div class="container">
+      <div class="prose">
+
+        <p>Downtown Charleston Coffee Shops is an independent local directory built by people who live here and drink a lot of coffee. No corporate backing, no pay-to-play listings, no affiliate commissions — just an honest guide to the best places to get a cup on the Charleston peninsula.</p>
+
+        <div class="pull-quote">"We built the guide we wished existed when we moved here."</div>
+
+        <p>Charleston's coffee scene has grown fast over the last few years. New shops open, old favorites evolve, and keeping track of what's worth your time isn't always easy — especially if you're visiting and only have a morning or two to spend. <strong>Our goal is simple:</strong> give you a reliable, up-to-date starting point so you spend less time searching and more time drinking good coffee.</p>
+
+        <p>Every listing is based on firsthand visits and community knowledge. We focus exclusively on <strong>downtown and the lower peninsula</strong> — King Street, the French Quarter, Harleston Village, Cannonborough, and the surrounding neighborhoods. We update the directory regularly as new spots open or hours change.</p>
+
+        <p>Have a shop you think deserves a spot? We're always looking for new recommendations from locals who know the scene.</p>
+
+        <a href="index.html" class="cta-link"><i class="bi bi-arrow-left me-1"></i>Back to the Directory</a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-brand">Downtown Charleston Coffee Shops</div>
+      <p>An independent guide to the best cafés on the Charleston peninsula.</p>
+      <hr />
+      <div class="d-flex flex-wrap justify-content-between gap-2" style="font-size:0.78rem;">
+        <span>© 2025 downtowncharlestoncoffeeshops.com</span>
+        <span><a href="index.html">Home</a> · <a href="about.html">About</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.css"></script>
+</body>
+</html>

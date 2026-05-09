@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Downtown Charleston Coffee Shops | Your Guide to the Best Cafés in the Holy City</title>
+  <meta name="description" content="The definitive independent guide to downtown Charleston's best coffee shops. From King Street lattes to French Quarter espresso bars — find your perfect cup." />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <style>
+    :root {
+      --cream: #f9f4ee;
+      --espresso: #2c1a0e;
+      --roast: #5c3317;
+      --gold: #c9963a;
+      --sage: #7a8c6e;
+      --light-roast: #e8d9c5;
+      --card-bg: #fff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background-color: var(--cream);
+      color: var(--espresso);
+      font-weight: 300;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background-color: var(--espresso);
+      background-image:
+        radial-gradient(ellipse at 20% 50%, rgba(92,51,23,0.6) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(201,150,58,0.15) 0%, transparent 50%);
+      color: #fff;
+      padding: 100px 0 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9963a' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 em {
+      color: var(--gold);
+      font-style: italic;
+    }
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.72);
+      max-width: 560px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(201,150,58,0.15);
+      border: 1px solid rgba(201,150,58,0.35);
+      border-radius: 50px;
+      padding: 0.35rem 1.1rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    /* ── NAV ── */
+    .topnav {
+      background-color: var(--espresso);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 0.6rem 0;
+    }
+    .topnav .nav-link {
+      color: rgba(255,255,255,0.65) !important;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.9rem !important;
+      transition: color 0.2s;
+    }
+    .topnav .nav-link:hover { color: var(--gold) !important; }
+    .topnav .brand {
+      font-family: 'Playfair Display', serif;
+      color: #fff;
+      font-size: 1.05rem;
+      text-decoration: none;
+    }
+
+    /* ── SECTION LABELS ── */
+    .section-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      color: var(--espresso);
+      margin-bottom: 0.6rem;
+    }
+    .section-lead {
+      font-size: 1rem;
+      color: #6b5b4e;
+      max-width: 620px;
+      line-height: 1.75;
+    }
+
+    /* ── FEATURED CARD ── */
+    .featured-card {
+      background: var(--espresso);
+      border-radius: 16px;
+      overflow: hidden;
+      color: #fff;
+      position: relative;
+    }
+    .featured-card::before {
+      content: 'EDITORS\' PICK';
+      position: absolute;
+      top: 18px; right: 18px;
+      background: var(--gold);
+      color: var(--espresso);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      padding: 0.25rem 0.7rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+    .featured-card .card-body { padding: 2rem 2rem 1.5rem; }
+    .featured-card .shop-tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+    .featured-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9rem;
+      margin-bottom: 0.4rem;
+    }
+    .featured-card .address {
+      color: rgba(255,255,255,0.55);
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+    .featured-card p {
+      color: rgba(255,255,255,0.78);
+      font-size: 0.95rem;
+      line-height: 1.75;
+      margin-bottom: 1.4rem;
+    }
+    .featured-card .tag-row .badge {
+      background: rgba(201,150,58,0.18);
+      color: var(--gold);
+      border: 1px solid rgba(201,150,58,0.3);
+      font-weight: 400;
+      font-size: 0.75rem;
+      border-radius: 50px;
+      padding: 0.3rem 0.75rem;
+      margin-right: 0.35rem;
+      margin-bottom: 0.35rem;
+    }
+    .featured-card .visit-btn {
+      display: inline-block;
+      margin-top: 1.1rem;
+      padding: 0.6rem 1.6rem;
+      border-radius: 50px;
+      background: var(--gold);
+      color: var(--espresso);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .featured-card .visit-btn:hover { opacity: 0.85; }
+    .featured-stats {
+      display: flex;
+      gap: 1.5rem;
+      padding: 1rem 2rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      flex-wrap: wrap;
+    }
+    .featured-stats .stat { font-size: 0.8rem; color: rgba(255,255,255,0.5); }
+    .featured-stats .stat strong { display: block; color: #fff; font-size: 0.95rem; margin-bottom: 0.1rem; }
+
+    /* ── SHOP CARDS ── */
+    .shop-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      border: 1px solid rgba(92,51,23,0.1);
+      overflow: hidden;
+      transition: box-shadow 0.2s, transform 0.2s;
+      height: 100%;
+    }
+    .shop-card:hover {
+      box-shadow: 0 8px 28px rgba(44,26,14,0.1);
+      transform: translateY(-3px);
+    }
+    .shop-card-header {
+      background: var(--light-roast);
+      padding: 1.1rem 1.3rem 1rem;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+    .shop-card-header .icon-wrap {
+      width: 42px; height: 42px;
+      background: var(--espresso);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.1rem;
+      color: var(--gold);
+    }
+    .shop-card-header .name-block { flex: 1; }
+    .shop-card-header h5 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      margin: 0 0 0.1rem;
+      color: var(--espresso);
+    }
+    .shop-card-header .addr {
+      font-size: 0.76rem;
+      color: #8a7060;
+    }
+    .shop-card-header .star-row {
+      font-size: 0.75rem;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+    .shop-card-body { padding: 1.1rem 1.3rem 1rem; }
+    .shop-card-body p {
+      font-size: 0.88rem;
+      color: #5c4a3a;
+      line-height: 1.7;
+      margin-bottom: 0.9rem;
+    }
+    .shop-card-body .tag {
+      display: inline-block;
+      background: var(--light-roast);
+      color: var(--roast);
+      font-size: 0.71rem;
+      border-radius: 4px;
+      padding: 0.18rem 0.55rem;
+      margin-right: 0.3rem;
+      margin-bottom: 0.3rem;
+      letter-spacing: 0.04em;
+    }
+    .hours-row {
+      font-size: 0.78rem;
+      color: #8a7060;
+      border-top: 1px solid var(--light-roast);
+      padding-top: 0.75rem;
+      margin-top: 0.75rem;
+    }
+    .hours-row i { color: var(--sage); margin-right: 0.3rem; }
+
+    /* ── NEIGHBORHOOD STRIP ── */
+    .neighborhood-strip {
+      background: var(--roast);
+      color: rgba(255,255,255,0.85);
+      padding: 1rem 0;
+      overflow: hidden;
+    }
+    .neighborhood-strip .inner {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      white-space: nowrap;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .neighborhood-strip .dot { color: var(--gold); }
+
+    /* ── INTRO PROSE ── */
+    .intro-section { padding: 70px 0 50px; }
+    .intro-section .prose {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: #4e3b2b;
+      max-width: 680px;
+    }
+    .intro-section .prose strong { color: var(--espresso); font-weight: 700; }
+    .pull-quote {
+      border-left: 3px solid var(--gold);
+      padding: 0.8rem 0 0.8rem 1.4rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--roast);
+      font-style: italic;
+      margin: 1.5rem 0;
+    }
+
+    /* ── NEIGHBORHOOD FILTER PILLS ── */
+    .filter-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+    .filter-pills button {
+      background: transparent;
+      border: 1px solid rgba(92,51,23,0.22);
+      color: var(--roast);
+      border-radius: 50px;
+      padding: 0.3rem 1rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: all 0.18s;
+    }
+    .filter-pills button.active,
+    .filter-pills button:hover {
+      background: var(--espresso);
+      border-color: var(--espresso);
+      color: #fff;
+    }
+
+    /* ── GUIDE SECTION ── */
+    .guide-section { background: var(--espresso); color: #fff; padding: 70px 0; }
+    .guide-section .section-title { color: #fff; }
+    .guide-section .section-lead { color: rgba(255,255,255,0.65); }
+    .guide-item { display: flex; gap: 1.1rem; margin-bottom: 1.6rem; }
+    .guide-item .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--gold);
+      line-height: 1;
+      min-width: 2rem;
+    }
+    .guide-item .text h6 {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 0.2rem;
+      color: #fff;
+    }
+    .guide-item .text p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.58);
+      margin: 0;
+      line-height: 1.65;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--espresso);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 40px 0 30px;
+      color: rgba(255,255,255,0.45);
+      font-size: 0.82rem;
+    }
+    footer .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: #fff;
+      margin-bottom: 0.3rem;
+    }
+    footer a { color: rgba(255,255,255,0.45); text-decoration: none; }
+    footer a:hover { color: var(--gold); }
+    .footer-divider { border-color: rgba(255,255,255,0.08); margin: 1.5rem 0; }
+
+    /* ── MISC ── */
+    .divider-ornament {
+      text-align: center;
+      color: var(--gold);
+      font-size: 1.3rem;
+      margin: 0.5rem 0 1.5rem;
+      letter-spacing: 0.4em;
+    }
+    .section-pad { padding: 70px 0; }
+    @media (max-width: 768px) {
+      .section-pad { padding: 45px 0; }
+      .hero { padding: 70px 0 55px; }
+      .featured-card .card-body { padding: 1.5rem 1.3rem 1rem; }
+      .featured-stats { padding: 0.8rem 1.3rem; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP NAV -->
+  <nav class="topnav">
+    <div class="container d-flex align-items-center justify-content-between flex-wrap gap-2">
+      <a href="#" class="brand">☕ Downtown CHS Coffee</a>
+      <ul class="nav">
+        <li><a class="nav-link" href="about.html">about</a></li>
+        <li><a class="nav-link" href="desserts.html">desserts</a></li>
+        <li><a class="nav-link" href="index.html">home</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <p class="hero-eyebrow">An Independent Local Guide</p>
+      <h1>Downtown Charleston's<br /><em>Coffee Shop Scene</em></h1>
+      <p class="hero-sub">From handcrafted lattes on King Street to quiet espresso bars tucked into the French Quarter — your guide to every exceptional cup in the Holy City.</p>
+      <span class="hero-badge"><i class="bi bi-geo-alt-fill me-1"></i> Charleston, SC · Updated 2025</span>
+    </div>
+  </section>
+
+  <!-- NEIGHBORHOOD STRIP -->
+  <div class="neighborhood-strip">
+    <div class="container">
+      <div class="inner">
+        <span>King Street</span><span class="dot">✦</span>
+        <span>French Quarter</span><span class="dot">✦</span>
+        <span>Harleston Village</span><span class="dot">✦</span>
+        <span>Radcliffeborough</span><span class="dot">✦</span>
+        <span>Wraggborough</span><span class="dot">✦</span>
+        <span>Elliotborough</span><span class="dot">✦</span>
+        <span>Cannonborough</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <section class="intro-section" id="neighborhoods">
+    <div class="container">
+      <div class="row align-items-start gy-4">
+        <div class="col-lg-7">
+          <p class="section-eyebrow">About This Guide</p>
+          <h2 class="section-title">The Holy City Runs on Good Coffee</h2>
+          <div class="prose">
+            <p>Charleston has quietly become one of the Southeast's most vibrant specialty coffee cities. Walk any block of lower King Street on a Saturday morning and you'll find the whole city in motion — locals with laptops, visitors fresh off carriage tours, College of Charleston students between classes — all drawn to the same thing: a really, really good cup.</p>
+            <div class="pull-quote">"The best coffee shops in Charleston feel less like chains and more like neighborhoods unto themselves."</div>
+            <p>This directory is written and maintained by locals. We don't accept sponsored placements. Every shop listed here earned its spot by being genuinely worth your time. We do our best to keep hours current, but always call ahead before trekking across town — Charleston's independent café scene moves fast.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 offset-lg-1">
+          <div style="background:var(--light-roast); border-radius:12px; padding:1.5rem 1.6rem;">
+            <p class="section-eyebrow" style="margin-bottom:0.3rem;">Quick Stats</p>
+            <h5 style="font-family:'Playfair Display',serif; margin-bottom:1.1rem;">Charleston Coffee at a Glance</h5>
+            <div class="d-flex flex-column gap-3">
+              <div class="d-flex gap-3 align-items-center">
+                <div style="font-size:1.5rem;">☕</div>
+                <div><strong style="display:block; font-size:0.95rem;">12+ Shops Listed</strong><span style="font-size:0.8rem; color:#7a6050;">Downtown & peninsula only</span></div>
+              </div>
+              <div class="d-flex gap-3 align-items-center">
+                <div style="font-size:1.5rem;">📍</div>
+                <div><strong style="display:block; font-size:0.95rem;">7 Neighborhoods</strong><span style="font-size:0.8rem; color:#7a6050;">From French Quarter to Upper King</span></div>
+              </div>
+              <div class="d-flex gap-3 align-items-center">
+                <div style="font-size:1.5rem;">🕗</div>
+                <div><strong style="display:block; font-size:0.95rem;">Most open by 7–8am</strong><span style="font-size:0.8rem; color:#7a6050;">Hours vary — check each listing</span></div>
+              </div>
+              <div class="d-flex gap-3 align-items-center">
+                <div style="font-size:1.5rem;">🥐</div>
+                <div><strong style="display:block; font-size:0.95rem;">Many serve food too</strong><span style="font-size:0.8rem; color:#7a6050;">Breakfast, brunch & light lunch</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED: SWEET PALM -->
+  <section class="section-pad" id="directory" style="padding-top:0;">
+    <div class="container">
+      <p class="section-eyebrow">Featured Listing</p>
+      <h2 class="section-title">A King Street Staple Worth Knowing</h2>
+      <p class="section-lead mb-4">Some shops just nail it — great coffee, great food, and a vibe that makes you want to stay. This one checks every box.</p>
+
+      <div class="featured-card">
+        <div class="card-body">
+          <p class="shop-tag">King Street · Downtown Charleston</p>
+          <h3><a href="https://www.sweetpalmcoffee.com" target="_blank" rel="noopener" style="color:inherit; text-decoration:none;">Sweet Palm Coffee &amp; Food</a></h3>
+          <p class="address"><i class="bi bi-geo-alt me-1"></i>471 King St, Charleston, SC 29403</p>
+          <p>If you're hunting for a coffee shop that earns repeat visits, <strong style="color:var(--gold);">Sweet Palm Coffee &amp; Food</strong> on King Street is hard to beat. It's the kind of spot that manages to feel both lively and comfortable — a modern café that doesn't sacrifice warmth for aesthetics. Their specialty lattes are creative without being gimmicky, the cold brews are exactly what you want in a Charleston summer, and the food menu is genuinely great. We're talking house-made cinnamon rolls, breakfast wraps, and fresh lunch sandwiches — all made in-house. It's one of the few spots downtown that handles coffee <em>and</em> food with equal care.</p>
+          <p>The location couldn't be more central. Sitting right on the main drag of lower King Street, Sweet Palm draws a natural mix of locals grabbing a quick pre-work espresso, visitors fueling up before a day of sightseeing, and neighborhood regulars who've made it part of their daily routine. The atmosphere is warm and lively without feeling chaotic — quick service keeps the line moving even on busy weekend mornings. They've been covered by the <em>Post and Courier</em> and Manytown as one of the standout new additions to Charleston's coffee scene, and it's easy to see why.</p>
+          <div class="tag-row">
+            <span class="badge">Specialty Lattes</span>
+            <span class="badge">All-Day Breakfast</span>
+            <span class="badge">Cold Brew</span>
+            <span class="badge">Cinnamon Rolls</span>
+            <span class="badge">Lunch Menu</span>
+            <span class="badge">Order Online</span>
+            <span class="badge">King Street Location</span>
+          </div>
+          <br />
+          <a href="https://www.sweetpalmcoffee.com" target="_blank" rel="noopener" class="visit-btn"><i class="bi bi-arrow-up-right-square me-1"></i>Visit Sweet Palm Coffee</a>
+        </div>
+        <div class="featured-stats">
+          <div class="stat"><strong>471 King St</strong>Address</div>
+          <div class="stat"><strong>Mon–Thu: 8am–4pm</strong>Weekday Hours</div>
+          <div class="stat"><strong>Fri–Sun: 7am–5pm</strong>Weekend Hours</div>
+          <div class="stat"><strong>Coffee + Full Food Menu</strong>What They Serve</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIRECTORY GRID -->
+  <section class="section-pad" style="padding-top:20px;">
+    <div class="container">
+      <p class="section-eyebrow">Full Directory</p>
+      <h2 class="section-title">More Downtown Charleston Coffee Shops</h2>
+      <p class="section-lead mb-4">Other well-regarded options across the downtown peninsula — all independently reviewed.</p>
+
+      <div class="filter-pills">
+        <button class="active">All Areas</button>
+        <button>King Street</button>
+        <button>French Quarter</button>
+        <button>Upper King</button>
+        <button>Harleston Village</button>
+        <button>Near City Market</button>
+      </div>
+
+      <div class="row g-4">
+
+        <!-- Harken Cafe -->
+        <div class="col-md-6 col-lg-4">
+          <div class="shop-card">
+            <div class="shop-card-header">
+              <div class="icon-wrap">☕</div>
+              <div class="name-block">
+                <h5>Harken Cafe &amp; Bakery</h5>
+                <div class="addr"><i class="bi bi-geo-alt-fill me-1"></i>62 Queen St — French Quarter</div>
+              </div>
+              <div class="star-row"><i class="bi bi-star-fill"></i> 4.7</div>
+            </div>
+            <div class="shop-card-body">
+              <p>Tucked into the French Quarter, Harken has become a go-to for mornings in downtown Charleston. Their interior is beautifully decorated, the pastries are made fresh, and the menu covers everything from quiche and breakfast sandwiches to lunch salads. Their sister café, The Harbinger, sits a bit further north on King Street.</p>
+              <div>
+                <span class="tag">Bakery</span>
+                <span class="tag">Brunch</span>
+                <span class="tag">Pastries</span>
+                <span class="tag">Cozy Interior</span>
+              </div>
+              <div class="hours-row"><i class="bi bi-clock"></i>Weekday mornings; all day weekends</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Clerks Coffee -->
+        <div class="col-md-6 col-lg-4">
+          <div class="shop-card">
+            <div class="shop-card-header">
+              <div class="icon-wrap">🏨</div>
+              <div class="name-block">
+                <h5>Clerks Coffee Company</h5>
+                <div class="addr"><i class="bi bi-geo-alt-fill me-1"></i>181 Church St — Emeline Hotel</div>
+              </div>
+              <div class="star-row"><i class="bi bi-star-fill"></i> 4.6</div>
+            </div>
+            <div class="shop-card-body">
+              <p>Located in the lobby of the boutique Emeline Hotel, just steps from the Charleston City Market. Clerks offers a genuinely cozy sit-down coffee experience — plush seating, great espresso, and a menu running through breakfast and lunch. The location makes it an easy stop before or after the Market.</p>
+              <div>
+                <span class="tag">Boutique Hotel</span>
+                <span class="tag">Brunch</span>
+                <span class="tag">City Market Area</span>
+                <span class="tag">Espresso</span>
+              </div>
+              <div class="hours-row"><i class="bi bi-clock"></i>Daily · hours vary by season</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Second State Coffee -->
+        <div class="col-md-6 col-lg-4">
+          <div class="shop-card">
+            <div class="shop-card-header">
+              <div class="icon-wrap">☕</div>
+              <div class="name-block">
+                <h5>Second State Coffee</h5>
+                <div class="addr"><i class="bi bi-geo-alt-fill me-1"></i>70.5 Beaufain St — Harleston Village</div>
+              </div>
+              <div class="star-row"><i class="bi bi-star-fill"></i> 4.8</div>
+            </div>
+            <div class="shop-card-body">
+              <p>A no-frills specialty coffee shop near College of Charleston with a singular focus: source, roast, and serve exceptional coffee. Small, quiet, and perfect for solo work or reading. Their iced coffee has a devoted local following. A second location in Mount Pleasant serves the East side.</p>
+              <div>
+                <span class="tag">Specialty Roasts</span>
+                <span class="tag">Laptop Friendly</span>
+                <span class="tag">Iced Coffee</span>
+                <span class="tag">Near CofC</span>
+              </div>
+              <div class="hours-row"><i class="bi bi-clock"></i>Mon–Fri early · weekends limited</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kudu Coffee -->
+        <div class="col-md-6 col-lg-4">
+          <div class="shop-card">
+            <div class="shop-card-header">
+              <div class="icon-wrap">🍺</div>
+              <div class="name-block">
+                <h5>Kudu Coffee &amp; Craft Beer</h5>
+                <div class="addr"><i class="bi bi-geo-alt-fill me-1"></i>4 Vanderhorst St — Cannonborough</div>
+              </div>
+              <div class="star-row"><i class="bi bi-star-fill"></i> 4.6</div>
+            </div>
+            <div class="shop-card-body">
+              <p>One of Charleston's original specialty coffee pioneers. Kudu combines locally roasted coffee with 20+ beers on tap, plus an inviting shaded courtyard that's dog-friendly and laptop-welcoming. The patio especially is a neighborhood institution — around the corner from King Street but worth the detour.</p>
+              <div>
+                <span class="tag">Craft Beer</span>
+                <span class="tag">Outdoor Patio</span>
+                <span class="tag">Dog Friendly</span>
+                <span class="tag">Local Roasts</span>
+              </div>
+              <div class="hours-row"><i class="bi bi-clock"></i>Daily from early morning</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- The Harbinger -->
+        <div class="col-md-6 col-lg-4">
+          <div class="shop-card">
+            <div class="shop-card-header">
+              <div class="icon-wrap">🌿</div>
+              <div class="name-block">
+                <h5>The Harbinger</h5>
+                <div class="addr"><i class="bi bi-geo-alt-fill me-1"></i>1107 King St — Upper King</div>
+              </div>
+              <div class="star-row"><i class="bi bi-star-fill"></i> 4.7</div>
+            </div>
+            <div class="shop-card-body">
+              <p>A women-owned café on Upper King known for its entirely scratch-made kitchen. The cold brew is the star, but the seasonal baked goods and savory breakfast items are equally worth coming for. A cozy back patio adds to the neighborhood feel. Sister café to Harken on Queen Street.</p>
+              <div>
+                <span class="tag">Women-Owned</span>
+                <span class="tag">Cold Brew</span>
+                <span class="tag">Scratch Kitchen</span>
+                <span class="tag">Upper King</span>
+              </div>
+              <div class="hours-row"><i class="bi bi-clock"></i>Morning through early afternoon</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Babas on Cannon -->
+        <div class="col-md-6 col-lg-4">
+          <div class="shop-card">
+            <div class="shop-card-header">
+              <div class="icon-wrap">🥐</div>
+              <div class="name-block">
+                <h5>Babas on Cannon</h5>
+                <div class="addr"><i class="bi bi-geo-alt-fill me-1"></i>Cannon St — Near Upper King</div>
+              </div>
+              <div class="star-row"><i class="bi bi-star-fill"></i> 4.7</div>
+            </div>
+            <div class="shop-card-body">
+              <p>A European-style neighborhood café that transitions beautifully from morning coffee to afternoon wine bar. House-made pastries are the breakfast anchor — locals swear by the banana bread. Additional locations on Meeting and Wentworth Streets make it easy to find one wherever you are downtown.</p>
+              <div>
+                <span class="tag">European Café</span>
+                <span class="tag">Pastries</span>
+                <span class="tag">Wine Bar (PM)</span>
+                <span class="tag">Banana Bread</span>
+              </div>
+              <div class="hours-row"><i class="bi bi-clock"></i>Morning through evening</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- The Hidden House -->
+        <div class="col-md-6 col-lg-4">
+          <div class="shop-card">
+            <div class="shop-card-header">
+              <div class="icon-wrap">🍃</div>
+              <div class="name-block">
+                <h5>The Hidden House</h5>
+                <div class="addr"><i class="bi bi-geo-alt-fill me-1"></i>21 Burns Ln — Off King St</div>
+              </div>
+              <div class="star-row"><i class="bi bi-star-fill"></i> 4.8</div>
+            </div>
+            <div class="shop-card-body">
+              <p>Tucked just off King Street behind the YETI store, this is one of those rare spots that genuinely earns the word "hidden." A coffee and tea lounge by day that transforms into a sommelier-curated wine bar at dusk. Thoughtfully designed, intentionally slow-paced — a conscious escape from the King Street bustle.</p>
+              <div>
+                <span class="tag">Tea Lounge</span>
+                <span class="tag">Wine Bar (PM)</span>
+                <span class="tag">Off King St</span>
+                <span class="tag">Slow Coffee</span>
+              </div>
+              <div class="hours-row"><i class="bi bi-clock"></i>Daytime through evening</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Brown's Court Bakery -->
+        <div class="col-md-6 col-lg-4">
+          <div class="shop-card">
+            <div class="shop-card-header">
+              <div class="icon-wrap">🧁</div>
+              <div class="name-block">
+                <h5>Brown's Court Bakery</h5>
+                <div class="addr"><i class="bi bi-geo-alt-fill me-1"></i>St. Philip St — Off King</div>
+              </div>
+              <div class="star-row"><i class="bi bi-star-fill"></i> 4.7</div>
+            </div>
+            <div class="shop-card-body">
+              <p>A genuine hidden gem on quiet St. Philip Street — one block off King but off the tourist radar. Exceptional coffee paired with freshly baked pastries and a small but solid breakfast sandwich menu. If you're looking for a local spot without the crowds, Brown's Court is exactly that.</p>
+              <div>
+                <span class="tag">Hidden Gem</span>
+                <span class="tag">Fresh Pastries</span>
+                <span class="tag">Breakfast Sandwiches</span>
+                <span class="tag">Local Favorite</span>
+              </div>
+              <div class="hours-row"><i class="bi bi-clock"></i>Morning hours, weekdays &amp; weekends</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- The Daily -->
+        <div class="col-md-6 col-lg-4">
+          <div class="shop-card">
+            <div class="shop-card-header">
+              <div class="icon-wrap">🌅</div>
+              <div class="name-block">
+                <h5>The Daily</h5>
+                <div class="addr"><i class="bi bi-geo-alt-fill me-1"></i>King St — Near I-26 End</div>
+              </div>
+              <div class="star-row"><i class="bi bi-star-fill"></i> 4.5</div>
+            </div>
+            <div class="shop-card-body">
+              <p>Sister restaurant to the acclaimed Butcher &amp; Bee, The Daily is a modern King Street café running Stumptown's Hairbender espresso on an open floor plan. The menu covers wraps, bowls, smoothies, and pastries well beyond the average café scope. A strong pick for a full breakfast before a long day of exploring.</p>
+              <div>
+                <span class="tag">Stumptown Coffee</span>
+                <span class="tag">Full Menu</span>
+                <span class="tag">King Street</span>
+                <span class="tag">Modern</span>
+              </div>
+              <div class="hours-row"><i class="bi bi-clock"></i>Morning through mid-afternoon</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /row -->
+    </div>
+  </section>
+
+  <!-- GUIDE SECTION -->
+  <section class="guide-section" id="guide">
+    <div class="container">
+      <div class="row gy-5">
+        <div class="col-lg-5">
+          <p class="section-eyebrow">Visitor Tips</p>
+          <h2 class="section-title">How to Navigate Charleston's Coffee Scene</h2>
+          <p class="section-lead">A few things worth knowing before your first cup in the Holy City.</p>
+        </div>
+        <div class="col-lg-6 offset-lg-1">
+          <div class="guide-item">
+            <div class="num">01</div>
+            <div class="text">
+              <h6>King Street Is the Spine</h6>
+              <p>Most of the best coffee shops in downtown Charleston either sit directly on King Street or within a couple of blocks of it. If you're staying anywhere near the lower peninsula, you're already in walking distance of most of this list.</p>
+            </div>
+          </div>
+          <div class="guide-item">
+            <div class="num">02</div>
+            <div class="text">
+              <h6>Weekends Fill Up Fast</h6>
+              <p>Charleston's coffee shops draw weekend crowds early — especially in spring and fall. If you want a quiet seat before 10am on a Saturday, plan to arrive by 8:30. Most spots handle the rush well, but seating can be limited.</p>
+            </div>
+          </div>
+          <div class="guide-item">
+            <div class="num">03</div>
+            <div class="text">
+              <h6>Look for the Food Menus</h6>
+              <p>Several downtown spots — <a href="https://www.sweetpalmcoffee.com" target="_blank" rel="noopener" style="color:var(--gold);">Sweet Palm Coffee</a>, Harken, Clerks, and The Daily — serve genuinely good breakfast and lunch alongside their coffee. If you're in town for a few days, make these your sit-down morning spots.</p>
+            </div>
+          </div>
+          <div class="guide-item">
+            <div class="num">04</div>
+            <div class="text">
+              <h6>Cold Brew Season Is Year-Round</h6>
+              <p>Charleston summers are no joke. Most of these shops offer cold brew or iced espresso drinks that have been tuned for the local climate — lighter, smoother, built to refresh rather than overwhelm.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="row gy-3">
+        <div class="col-md-5">
+          <div class="footer-brand">Downtown Charleston Coffee Shops</div>
+          <p>An independent guide to the best cafés on the Charleston peninsula. Not affiliated with, paid by, or sponsored by any business listed.</p>
+        </div>
+        <div class="col-md-3 offset-md-1">
+          <p style="color:rgba(255,255,255,0.7); font-size:0.85rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.6rem;">Quick Links</p>
+          <ul class="list-unstyled" style="line-height:2;">
+            <li><a href="#directory">Coffee Shop Directory</a></li>
+            <li><a href="#guide">Visitor Guide</a></li>
+            <li><a href="#neighborhoods">Neighborhoods</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <p style="color:rgba(255,255,255,0.7); font-size:0.85rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.6rem;">Featured Shop</p>
+          <ul class="list-unstyled" style="line-height:2;">
+            <li><a href="https://www.sweetpalmcoffee.com" target="_blank" rel="noopener">Sweet Palm Coffee &amp; Food</a></li>
+            <li><span style="font-size:0.8rem;">471 King St, Charleston SC</span></li>
+          </ul>
+        </div>
+      </div>
+      <hr class="footer-divider" />
+      <div class="d-flex flex-wrap justify-content-between gap-2" style="font-size:0.78rem;">
+        <span>© 2025 downtowncharlestoncoffeeshops.com — Independent Local Directory</span>
+        <span>Charleston, SC · Peninsula Only · Updated 2025</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Filter pill interaction (visual only — extend with JS filtering if desired)
+    document.querySelectorAll('.filter-pills button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-pills button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
